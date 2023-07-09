@@ -1,0 +1,17 @@
+#userInfoBox {
+	width: 500px;
+	margin: auto;
+	margin-top: 60px;
+}
+
+#logoutButton {
+	width: 100px;
+	height: 30px;
+	position: absolute;
+	margin-left: 275px;
+}
+
+#profileImage {
+	width: 500px;
+	height: 500px;
+}

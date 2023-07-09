@@ -1,0 +1,11 @@
+#loginImageBox {
+	width: 400px;
+	margin: auto;
+	margin-top: 60px;
+}
+
+.loginImages {
+	width: 400px;
+	height: 60px;
+	cursor: pointer;
+}
