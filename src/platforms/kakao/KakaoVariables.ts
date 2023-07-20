@@ -2,8 +2,8 @@ import { pageReturn } from '../../common/commonFunctions';
 const kakaoBaseURL = 'https://kauth.kakao.com/oauth';
 const kakaoRedirectURI = `${process.env.REACT_APP_FRONTEND_BASE_URL}/kakaoredirect`;
 
-export const kakaoAuthRequestURL = `${kakaoBaseURL}/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${kakaoRedirectURI}&response_type=code`;
-export let kakaoAccessTokenRequestURL = `${kakaoBaseURL}/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${kakaoRedirectURI}&code=`;
+const kakaoAuthRequestURL = `${kakaoBaseURL}/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${kakaoRedirectURI}&response_type=code`;
+let kakaoAccessTokenRequestURL = `${kakaoBaseURL}/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${kakaoRedirectURI}&code=`;
 
 export const kakaoAuthRequest = () => {
 	window.open(kakaoAuthRequestURL, 'popup', 'width = 400, height = 700')!;
@@ -11,14 +11,14 @@ export const kakaoAuthRequest = () => {
 
 export const kakaoLogoutWindowOpen = () => {
 	window.open(
-		`https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_FRONTEND_BASE_URL}&state=kakaologgedout`,
+		`https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_FRONTEND_BASE_URL}&state=kakaologgedout`,
 		'popup',
 		'width = 400, height = 700'
 	)!;
 };
 
 export const kakaoUserInfoFetchWithAccesstoken = () => {
-	let accessToken: string;
+	let kakaoAccessToken: string;
 	let kakaoAccessTokenRequestURLWithCode: string;
 
 	const kakaoAuthorizeCode = new URL(window.location.href).searchParams.get(
@@ -30,10 +30,10 @@ export const kakaoUserInfoFetchWithAccesstoken = () => {
 	fetch(kakaoAccessTokenRequestURLWithCode)
 		.then((res) => res.json())
 		.then((data) => {
-			accessToken = data.access_token;
-			localStorage.setItem('kakaoaccesstoken', accessToken);
+			kakaoAccessToken = data.access_token;
+			localStorage.setItem('kakaoaccesstoken', kakaoAccessToken);
 			localStorage.setItem('loggedin', 'kakao');
-			return { accessToken };
+			return { accessToken: kakaoAccessToken };
 		})
 		.then((accessTokenObject) => {
 			//

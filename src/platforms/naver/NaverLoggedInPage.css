@@ -1,17 +1,17 @@
-#kakaoUserInfoBox {
+#naverUserInfoBox {
 	width: 500px;
 	margin: auto;
 	margin-top: 60px;
 }
 
-#kakaoLogoutButton {
+#naverLogoutButton {
 	width: 100px;
 	height: 30px;
 	position: absolute;
 	margin-left: 195px;
 }
 
-#kakaoProfileImage {
+#naverProfileImage {
 	width: 500px;
 	height: 500px;
 }

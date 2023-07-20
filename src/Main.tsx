@@ -48,7 +48,7 @@ function Main() {
 							className="loginImages"
 							src={naverLoginImage}
 							alt="naverLoginImage"
-							onClick={kakaoAuthRequest}
+							onClick={naverAuthRequest}
 						/>
 					</div>
 				</div>

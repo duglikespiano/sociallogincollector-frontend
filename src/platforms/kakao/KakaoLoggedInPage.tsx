@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import { kakaoLogoutWindowOpen } from './KakaoVariables';
+import './KakaoLoggedInPage.css';
 
 function KakaoLoggedInPage() {
 	const [isReadyToFecth, setIsReadyToFetch] = useState(false);
