@@ -1,44 +1,25 @@
 import { useState, useEffect, Fragment } from 'react';
-import { pageReturn } from './common/commonFunctions';
-import { kakaoAuthRequest } from './platforms/kakao/variables';
+import {
+	kakaoAuthRequest,
+	kakaoLogout,
+} from './platforms/kakao/KakaoVariables';
+import { naverAuthRequest } from './platforms/naver/naverVariables';
 import kakaoLoginImage from './images/kakaoLoginImage.png';
-import LoggedInPage from './common/LoggedInPage';
+import naverLoginImage from './images/naverLoginImage.png';
+import LoggedInMainPage from './common/LoggedInMainPage';
 import './Main.css';
 
 function Main() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState('');
 	const [isReadyToFecth, setIsReadyToFetch] = useState(false);
 
 	useEffect(() => {
-		if (
-			window.location.href ===
-			`${process.env.REACT_APP_FRONTEND_BASE_URL}/?state=kakaologgedout`
-		) {
-			const accessTokenObject = {
-				accessToken: localStorage.getItem('kakaoaccesstoken'),
-			};
-			fetch(
-				`${process.env.REACT_APP_BACKEND_BASE_URL}/kakao/unlink` as string,
-				{
-					method: 'post',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(accessTokenObject),
-				}
-			)
-				.then((res) => res.json())
-				.then((data) => console.log(data))
-				.finally(() => {
-					localStorage.clear();
-					window.location.href = process.env
-						.REACT_APP_FRONTEND_BASE_URL as string;
-					pageReturn();
-				});
+		if (window.location.href.includes('?state=kakaologgedout')) {
+			kakaoLogout();
 		}
 
-		if (localStorage.getItem('kakaoaccesstoken')) {
-			setIsLoggedIn(true);
+		if (localStorage.getItem('loggedin')) {
+			setIsLoggedIn(localStorage.getItem('loggedin') as string);
 		}
 
 		return () => {
@@ -49,15 +30,27 @@ function Main() {
 	return (
 		<Fragment>
 			{isLoggedIn ? (
-				<LoggedInPage />
+				<LoggedInMainPage
+					loggedInPlatform={localStorage.getItem('loggedin')!}
+				/>
 			) : (
-				<div id="loginImageBox">
-					<img
-						className="loginImages"
-						src={kakaoLoginImage}
-						alt="kakaoLoginImage"
-						onClick={kakaoAuthRequest}
-					/>
+				<div>
+					<div className="loginImageBox">
+						<img
+							className="loginImages"
+							src={kakaoLoginImage}
+							alt="kakaoLoginImage"
+							onClick={kakaoAuthRequest}
+						/>
+					</div>
+					<div className="loginImageBox">
+						<img
+							className="loginImages"
+							src={naverLoginImage}
+							alt="naverLoginImage"
+							onClick={kakaoAuthRequest}
+						/>
+					</div>
 				</div>
 			)}
 		</Fragment>

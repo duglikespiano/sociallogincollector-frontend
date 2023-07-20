@@ -1,0 +1,17 @@
+#kakaoUserInfoBox {
+	width: 500px;
+	margin: auto;
+	margin-top: 60px;
+}
+
+#kakaoLogoutButton {
+	width: 100px;
+	height: 30px;
+	position: absolute;
+	margin-left: 275px;
+}
+
+#kakaoProfileImage {
+	width: 500px;
+	height: 500px;
+}

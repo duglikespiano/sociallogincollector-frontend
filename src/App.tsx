@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Main from './Main';
-import KaKaoredirect from './platforms/kakao/Kakaoredirect';
+import KakaoRedirect from './platforms/kakao/KakaoRedirect';
 
 function App() {
 	return (
 		<Routes>
 			<Route path="" element={<Main />} />
-			<Route path="/kakaoredirect" element={<KaKaoredirect />} />
+			<Route path="/kakaoredirect" element={<KakaoRedirect />} />
 		</Routes>
 	);
 }

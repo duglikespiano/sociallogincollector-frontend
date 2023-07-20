@@ -1,8 +1,7 @@
 import { useState, useEffect, Fragment } from 'react';
-import { kakaoLogout } from '../platforms/kakao/variables';
-import './LoggedInPage.css';
+import { kakaoLogoutWindowOpen } from './KakaoVariables';
 
-function LoggedInPage() {
+function KakaoLoggedInPage() {
 	const [isReadyToFecth, setIsReadyToFetch] = useState(false);
 	const [kakaoUserInfo, setKakaoUserInfo] = useState<{
 		nickname: string;
@@ -40,9 +39,9 @@ function LoggedInPage() {
 
 	return (
 		<Fragment>
-			<div id="userInfoBox">
-				You are logged in
-				<button id="kakaoLogoutButton" onClick={kakaoLogout}>
+			<div id="kakaoUserInfoBox">
+				You are logged in with Kakao
+				<button id="kakaoLogoutButton" onClick={kakaoLogoutWindowOpen}>
 					Log out
 				</button>
 				<div>
@@ -56,9 +55,9 @@ function LoggedInPage() {
 					Profile image :{' '}
 					{kakaoUserInfo.profile_image_url ? (
 						<img
-							id="profileImage"
+							id="kakaoProfileImage"
 							src={kakaoUserInfo.profile_image_url as string}
-							alt="userProfileImage"
+							alt="kakaoProfileImage"
 						/>
 					) : (
 						'N/A'
@@ -69,4 +68,4 @@ function LoggedInPage() {
 	);
 }
 
-export default LoggedInPage;
+export default KakaoLoggedInPage;
