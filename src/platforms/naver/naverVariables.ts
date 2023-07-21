@@ -47,3 +47,8 @@ export const naverUserInfoFetchWithAccesstoken = () => {
 			pageReturn();
 		});
 };
+
+export const naverLogout = () => {
+	localStorage.clear();
+	window.location.reload();
+};

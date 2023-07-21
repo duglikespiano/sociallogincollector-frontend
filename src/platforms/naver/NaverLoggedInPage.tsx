@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
-// import { naverLogoutWindowOpen } from './naverVariables';
+import { naverLogout } from './naverVariables';
 import './NaverLoggedInPage.css';
 
 function NaverLoggedInPage() {
@@ -47,7 +47,7 @@ function NaverLoggedInPage() {
 		<Fragment>
 			<div id="naverUserInfoBox">
 				You are logged in with Naver
-				<button id="naverLogoutButton" onClick={() => console.log('클릭 ㅋ')}>
+				<button id="naverLogoutButton" onClick={naverLogout}>
 					Log out
 				</button>
 				<div>
