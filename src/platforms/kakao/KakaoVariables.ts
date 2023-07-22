@@ -9,14 +9,6 @@ export const kakaoAuthRequest = () => {
 	window.open(kakaoAuthRequestURL, 'popup', 'width = 400, height = 700')!;
 };
 
-export const kakaoLogoutWindowOpen = () => {
-	window.open(
-		`https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_FRONTEND_BASE_URL}&state=kakaologgedout`,
-		'popup',
-		'width = 400, height = 700'
-	)!;
-};
-
 export const kakaoUserInfoFetchWithAccesstoken = () => {
 	let kakaoAccessToken: string;
 	let kakaoAccessTokenRequestURLWithCode: string;
@@ -32,11 +24,10 @@ export const kakaoUserInfoFetchWithAccesstoken = () => {
 		.then((data) => {
 			kakaoAccessToken = data.access_token;
 			localStorage.setItem('kakaoaccesstoken', kakaoAccessToken);
-			localStorage.setItem('loggedin', 'kakao');
+			localStorage.setItem('loggedinplatform', 'kakao');
 			return { accessToken: kakaoAccessToken };
 		})
 		.then((accessTokenObject) => {
-			//
 			fetch(
 				`${process.env.REACT_APP_BACKEND_BASE_URL}/kakao/userinfo` as string,
 				{
@@ -47,15 +38,19 @@ export const kakaoUserInfoFetchWithAccesstoken = () => {
 					body: JSON.stringify(accessTokenObject),
 				}
 			).then((res) => res.json());
-			// .then((data) => {
-			// 	localStorage.setItem('kakaouserinfo', JSON.stringify(data));
-			// });
 		})
-		//
 		.catch((error) => console.error(error))
 		.finally(() => {
 			pageReturn();
 		});
+};
+
+export const kakaoLogoutWindowOpen = () => {
+	window.open(
+		`https://kauth.kakao.com/oauth/logout?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&logout_redirect_uri=${process.env.REACT_APP_FRONTEND_BASE_URL}&state=kakaologgedout`,
+		'popup',
+		'width = 400, height = 700'
+	)!;
 };
 
 export const kakaoLogout = () => {
@@ -70,7 +65,6 @@ export const kakaoLogout = () => {
 		body: JSON.stringify(accessTokenObject),
 	})
 		.then((res) => res.json())
-		.then((data) => console.log(data))
 		.finally(() => {
 			localStorage.clear();
 			window.location.href = process.env.REACT_APP_FRONTEND_BASE_URL as string;

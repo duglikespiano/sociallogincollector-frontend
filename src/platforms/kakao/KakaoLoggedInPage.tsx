@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
-import { kakaoLogoutWindowOpen } from './KakaoVariables';
+import { kakaoLogoutWindowOpen } from './kakaoVariables';
 import './KakaoLoggedInPage.css';
 
 function KakaoLoggedInPage() {
@@ -15,7 +15,7 @@ function KakaoLoggedInPage() {
 		setIsReadyToFetch(true);
 		if (isReadyToFecth) {
 			const accessTokenObject = {
-				accessToken: localStorage.getItem('kakaoaccesstoken'),
+				kakaoAccessToken: localStorage.getItem('kakaoaccesstoken'),
 			};
 
 			fetch(

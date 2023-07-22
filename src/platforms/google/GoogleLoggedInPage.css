@@ -1,0 +1,17 @@
+#googleUserInfoBox {
+	width: 500px;
+	margin: auto;
+	margin-top: 60px;
+}
+
+#googleLogoutButton {
+	width: 100px;
+	height: 30px;
+	position: absolute;
+	margin-left: 195px;
+}
+
+#googleProfileImage {
+	width: 500px;
+	height: 500px;
+}

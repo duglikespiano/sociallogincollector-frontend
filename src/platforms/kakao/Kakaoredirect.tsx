@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from 'react';
 import LoadingPage from '../../common/LoadingPage';
-import { kakaoUserInfoFetchWithAccesstoken } from './KakaoVariables';
+import { kakaoUserInfoFetchWithAccesstoken } from './kakaoVariables';
 
 function KakaoRedirect() {
 	const [isReadyToFecth, setIsReadyToFetch] = useState(false);

@@ -30,17 +30,20 @@ export const naverUserInfoFetchWithAccesstoken = () => {
 		},
 	};
 
-	fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/userinfo`, {
-		method: 'post',
-		headers: {
-			'Content-type': 'application/json',
-		},
-		body: JSON.stringify(dataForFetch),
-	})
+	fetch(
+		`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/userinfowithouttoken`,
+		{
+			method: 'post',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify(dataForFetch),
+		}
+	)
 		.then((res) => res.json())
 		.then((data) => {
 			localStorage.setItem('naveraccesstoken', data.naverAccessToken);
-			localStorage.setItem('loggedin', 'naver');
+			localStorage.setItem('loggedinplatform', 'naver');
 		})
 		.catch((error) => console.error(error))
 		.finally(() => {
