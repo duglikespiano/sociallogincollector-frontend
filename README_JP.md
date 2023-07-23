@@ -17,7 +17,7 @@
 
 - Project タイトル: sociallogincollector_frontend
 - URL : -
-- 期間 : 2023.06.09 - 進行中
+- 期間 : 2023.06.09 - 2023.06.23 (2 週)
 - 人員 : 1 人
 - 技術スタック : </br>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
@@ -39,6 +39,11 @@
 
 ### 3. 開発ノート
 
+- ロクアウト refactoring(google, 20230623)
+- ロクアウト refactoring(naver, 20230623)
+- ログイン, ロクアウト機能追加(google, 20230623)
+- ログイン, ロクアウト機能追加(naver, 20230621)
+- ロクアウト refactoring(カカオ, 20230620)
 - ログイン, ロクアウト, 連結解除機能追加(カカオ, 20230619)
   </br>
   </br>

@@ -17,7 +17,7 @@
 
 - Project title : sociallogincollector_frontend
 - URL : -
-- Period : 2023.06.09 - in progress
+- Period : July 09 2023 - July 23 2023 (2weeks)
 - Member(s) : Dug Park
 - Tech stack : </br>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
@@ -39,7 +39,12 @@
 
 ### 3. Development note
 
-- Features for login, logout, unlink added(kakao, 06192023)
+- Logout feature Refactored(google, July 23 2023)
+- Logout feature Refactored(naver, July 23 2023)
+- Login feature added(google, July 23 2023)
+- Login feature added(naver, July 21 2023)
+- Overall refactoring(kakao, July 20 2023)
+- Features for login, logout, unlink added(kakao, July 09 2023)
   </br>
   </br>
 
