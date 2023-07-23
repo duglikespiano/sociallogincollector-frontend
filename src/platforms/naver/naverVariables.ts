@@ -7,6 +7,13 @@ const naverRedirectURI = encodeURI(
 
 const naverAuthRequestURL = `${naverBaseURL}/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&redirect_uri=${naverRedirectURI}&state=`;
 export let naverAccessTokenRequestURL = `${naverBaseURL}/token?grant_type=authorization_code&client_id=${process.env.REACT_APP_NAVER_CLIENT_ID}&client_secret=${process.env.REACT_APP_NAVER_CLIENT_SECRET}&redirect_uri=${naverRedirectURI}&code=`;
+const naverAccessTokenRemoveURL = `${naverBaseURL}/token?grant_type=delete&client_id=${
+	process.env.REACT_APP_NAVER_CLIENT_ID
+}&client_secret=${
+	process.env.REACT_APP_NAVER_CLIENT_SECRET
+}&access_token=${localStorage.getItem(
+	'naveraccesstoken'
+)}&service_provider=NAVER`;
 
 export const naverAuthRequest = () => {
 	window.open(naverAuthRequestURL, 'popup', 'width = 400, height = 700')!;
@@ -30,16 +37,13 @@ export const naverUserInfoFetchWithAccesstoken = () => {
 		},
 	};
 
-	fetch(
-		`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/userinfowithouttoken`,
-		{
-			method: 'post',
-			headers: {
-				'Content-type': 'application/json',
-			},
-			body: JSON.stringify(dataForFetch),
-		}
-	)
+	fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/tokenanduserinfo`, {
+		method: 'post',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify(dataForFetch),
+	})
 		.then((res) => res.json())
 		.then((data) => {
 			localStorage.setItem('naveraccesstoken', data.naverAccessToken);
@@ -52,6 +56,17 @@ export const naverUserInfoFetchWithAccesstoken = () => {
 };
 
 export const naverLogout = () => {
-	localStorage.clear();
-	window.location.reload();
+	const dataForFetch = { naverAccessTokenRemoveURL };
+	fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/token` as string, {
+		method: 'delete',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(dataForFetch),
+	})
+		.then((res) => res.json())
+		.then(() => {
+			localStorage.clear();
+			window.location.reload();
+		});
 };

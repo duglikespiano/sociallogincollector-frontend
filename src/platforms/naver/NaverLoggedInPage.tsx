@@ -19,7 +19,7 @@ function NaverLoggedInPage() {
 			};
 
 			fetch(
-				`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/userinfowithtoken` as string,
+				`${process.env.REACT_APP_BACKEND_BASE_URL}/naver/userinfo` as string,
 				{
 					method: 'post',
 					headers: {
