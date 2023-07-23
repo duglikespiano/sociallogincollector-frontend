@@ -11,6 +11,23 @@ export const googleAuthRequest = () => {
 };
 
 export const googleLogoutWindowOpen = () => {
-	localStorage.clear();
-	pageReturn();
+	const dataForFetch = {
+		accessTokkenRevokeURL: `https://oauth2.googleapis.com/revoke?token=${localStorage.getItem(
+			'googleaccesstoken'
+		)}`,
+	};
+
+	fetch(`${process.env.REACT_APP_BACKEND_BASE_URL}/google/token`, {
+		method: 'delete',
+		headers: {
+			'Content-type': 'application/json',
+		},
+		body: JSON.stringify(dataForFetch),
+	})
+		.then((res) => res.json())
+		.then(() => {
+			localStorage.clear();
+			pageReturn();
+		})
+		.catch((error) => console.error(error));
 };
